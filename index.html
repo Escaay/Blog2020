@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小明记事本</title>
+    <style>
+
+    </style>
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <div>
+        <header>小 明 记 事 本</header>
+        <br>
+        <section id="content">
+            <input autofocus="autofocus" v-model='inputvalue' @keyup.enter='add' />
+            <br><br>
+            <hr>
+            <br>
+            <ul>
+                <li v-for='(item,index) in list' :class="{' a ' :index%2==0, 'b ':index%2!=0}">&nbsp{{item}}&nbsp&nbsp<button @click='decline(index)'>&nbsp删除&nbsp</button></li>
+            </ul>
+            <!-- html中只能双引号嵌套单引号 -->
+            <br>
+            <hr><br>
+            <span @click='clearall' :class="{ c: isC,d:isD }">{{clear}}<br><span @click='noevent'style="color: red">当前事件数 : {{list.length}}</span></span>
+        </section>
+    </div>
+
+    <script>
+        var maintext = new Vue({
+            el: '#content',
+            data: {
+                maintext: '666',
+                list: ['吃饭', '睡觉', '写代码'],
+                inputvalue: '',
+                clear: '删除所有事件',
+                isC: true,
+                isD: false,
+            },
+            methods: {
+                add: function() {
+                    this.inputvalue == '' ? alert('记事不能为空') :
+                        this.list.push(this.inputvalue)
+                    this.inputvalue = ''
+                },
+                decline: function(index) {
+                    var ul = document.getElementsByTagName('ul')
+                    var li = document.getElementsByTagName('li')
+                        // li.ul.removeChild(li)
+                        /* 这里是因为每个 x 对应的是当前元素。removeChild删除的是父节点里的一个子节点，所以删除不了。
+这里他是数组，所以能用 splice 来删除当前元素,如果不用vue框架则可以删除元素 */
+                    this.list.splice(index, 1)
+                },
+                clearall: function() {
+                    this.list = []
+                    this.clear = ''
+                    this.isC = false
+                    this.isD = !this.isD
+                },
+                preventdefault: function stopDefault(e) {
+                    //阻止默认浏览器动作(W3C) 
+                    if (e && e.preventDefault)
+                        e.preventDefault();
+                    //IE中阻止函数器默认动作的方式 
+                    else
+                        window.event.returnValue = false;
+                    return false;
+                }, //取消默认事件的封装函数
+                noevent: function() {
+                    // 取消冒泡
+                    window.event ? window.event.cancelBubble = true : e.stopPropagation();
+                    //取消默认事件
+                    stopDefault(noevent) //取消默认事件无法阻止冒泡
+
+                }
+            }
+        })
+    </script>
+    <style scoped>
+        html,
+        body {
+            height: 100%;
+            background-image: url('./img/bj.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        
+        .a {
+            color: brown;
+        }
+        
+        .a,
+        .b {
+            line-height: 50px;
+            height: 50px;
+            background-color: pink;
+            list-style: none;
+            width: 100%;
+        }
+        
+        .b {
+            color: green;
+        }
+        
+        div {
+            margin: auto!important;
+            text-align: center;
+            height: 100%;
+        }
+        
+        .c {
+            font-style: italic;
+            color: aquamarine;
+            font-size: large;
+            display: inline-block;
+            line-height: 50px;
+            height: 50px;
+            width: 30%;
+            background-color: yellowgreen;
+            border: 2px solid blue;
+        }
+        
+        header {
+            font-weight: bold;
+            font-size: 2em
+        }
+    </style>
+</body>
+
+</html>
