@@ -1,0 +1,1 @@
+{"version":3,"sources":["pages/message/index.js"],"names":["Message"],"mappings":"gIAAA,sEAEe,SAASA,IACpB,OACI","file":"static/js/7.c3f77a07.chunk.js","sourcesContent":["import React from 'react'\r\nimport './index.css'\r\nexport default function Message() {\r\n    return (\r\n        <div>\r\n            haha\r\n        </div>\r\n    )\r\n}\r\n"],"sourceRoot":""}

@@ -1,0 +1,2 @@
+.message{width:80%;height:85vh;float:right;position:relative;overflow-y:scroll}.message::-webkit-scrollbar{display:none}.message-content,.message-input{width:70vw;position:relative;left:3vw}.message-content{margin-bottom:2vh;color:rgba(0,0,0,.9);font-size:1.2vw;height:10vh;background-color:#8b7ce2}.message-love{position:absolute;bottom:0;right:4px}@media screen and (max-width:1000px){.message{width:87vw;height:70vh;float:right;position:relative;overflow-y:scroll;margin-top:10vh}.message-content{font-size:3.2vw}}
+/*# sourceMappingURL=11.f44c94c8.chunk.css.map */
